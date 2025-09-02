@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.visshnu.marketrisk.ui.DashboardController">
+
+    <top>
+        <ToolBar>
+            <Button text="📂 Load CSV" onAction="#onChooseFile"/>
+            <Label text="  File: "/>
+            <Label fx:id="lblFile" text="(none)"/>
+            <Separator orientation="VERTICAL"/>
+            <Label text="Confidence:"/>
+            <Slider fx:id="sliderConfidence" prefWidth="200.0" />
+            <Label fx:id="lblConfidence" text="95%"/>
+        </ToolBar>
+    </top>
+
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Price">
+                    <BorderPane padding="10">
+                        <center>
+                            <LineChart fx:id="priceChart">
+                                <xAxis>
+                                    <CategoryAxis fx:id="priceChartXAxis"/>
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis fx:id="priceChartYAxis"/>
+                                </yAxis>
+                            </LineChart>
+                        </center>
+                    </BorderPane>
+                </Tab>
+                <Tab text="Returns Histogram">
+                    <BorderPane padding="10">
+                        <center>
+                            <BarChart fx:id="returnsChart">
+                                <xAxis>
+                                    <CategoryAxis fx:id="returnsChartXAxis"/>
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis fx:id="returnsChartYAxis"/>
+                                </yAxis>
+                            </BarChart>
+                        </center>
+                    </BorderPane>
+                </Tab>
+                <Tab text="Data">
+                    <BorderPane padding="10">
+                        <center>
+                            <TableView fx:id="tablePrices">
+                                <columns>
+                                    <TableColumn fx:id="colDate" text="Date" prefWidth="180"/>
+                                    <TableColumn fx:id="colClose" text="Close" prefWidth="140"/>
+                                </columns>
+                            </TableView>
+                        </center>
+                    </BorderPane>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+
+    <right>
+        <VBox spacing="8" padding="12" BorderPane.alignment="CENTER">
+            <Label text="Risk Metrics" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+            <Separator/>
+            <GridPane hgap="8" vgap="6">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="60"/>
+                    <ColumnConstraints percentWidth="40"/>
+                </columnConstraints>
+
+                <children>
+                    <Label text="Average Price:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblAvgPrice" text="-" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Volatility:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblVol" text="-" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="VaR:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblVaR" text="-" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                    <Label text="CVaR:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblCVaR" text="-" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                    <Label text="Sharpe:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblSharpe" text="-" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                    <Label text="Max Drawdown:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblMDD" text="-" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                </children>
+            </GridPane>
+        </VBox>
+    </right>
+
+</BorderPane>

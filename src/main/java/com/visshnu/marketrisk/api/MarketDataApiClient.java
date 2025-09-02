@@ -1,29 +1,37 @@
 package com.visshnu.marketrisk.api;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+
+import com.visshnu.marketrisk.db.CsvReader;
+import com.visshnu.marketrisk.model.PriceData;
+
+import java.io.IOException;
+import java.util.List;
+
+/**
+ * MarketDataApiClient is responsible for fetching or loading price data.
+ * For now, it loads from CSV, but later you can extend it to call real APIs.
+ */
 public class MarketDataApiClient {
-    public String getApiResponse(String urlStr) throws Exception {
-        URL url = new URL(urlStr);
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("GET");
-        int status = con.getResponseCode();
 
-        if (status != 200) {
-            throw new RuntimeException("HTTP error code : " + status);
-        }
+    /**
+     * Load historical price data for a given company.
+     * 
+     * @param companyName The stock/company name (CSV file should be {companyName}_timeseries.csv)
+     * @return List of PriceData objects
+     * @throws IOException if CSV cannot be read
+     */
+    public static List<PriceData> getHistoricalPrices(String companyName) throws IOException {
+        String filePath = "src/main/resources/" + companyName + "_timeseries.csv";
+        return CsvReader.readPriceData(filePath);
+    }
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuilder content = new StringBuilder();
-
-        while ((inputLine = in.readLine()) != null) {
-            content.append(inputLine);
-        }
-        in.close();
-        con.disconnect();
-
-        return content.toString();
+    /**
+     * Simple helper to print data preview (first N rows).
+     */
+    public static void previewData(List<PriceData> prices, int limit) {
+        System.out.println("Date\t\tClose Price");
+        System.out.println("----------------------------");
+        prices.stream()
+                .limit(limit)
+                .forEach(pd -> System.out.println(pd.getDate() + "\t" + pd.getClose()));
     }
 }

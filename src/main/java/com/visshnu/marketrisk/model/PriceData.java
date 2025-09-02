@@ -1,15 +1,17 @@
 package com.visshnu.marketrisk.model;
 
+import java.time.LocalDate;
+
 public class PriceData {
-    private String date;
+    private LocalDate date;
     private double close;
 
-    public PriceData(String date, double close) {
+    public PriceData(LocalDate date, double close) {
         this.date = date;
         this.close = close;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -20,7 +22,7 @@ public class PriceData {
     @Override
     public String toString() {
         return "PriceData{" +
-                "date='" + date + '\'' +
+                "date=" + date +
                 ", close=" + close +
                 '}';
     }
