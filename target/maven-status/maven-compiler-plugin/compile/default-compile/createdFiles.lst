@@ -1,0 +1,8 @@
+com\visshnu\marketrisk\Main.class
+com\visshnu\marketrisk\api\MarketDataApiClient.class
+com\visshnu\marketrisk\db\CsvReader.class
+com\visshnu\marketrisk\service\MarketRiskService.class
+com\visshnu\marketrisk\ui\DashboardController.class
+com\visshnu\marketrisk\calculations\RiskCalculations.class
+com\visshnu\marketrisk\ui\MainApp.class
+com\visshnu\marketrisk\model\PriceData.class
