@@ -135,6 +135,3 @@ Enter Company Name: TCS.NS
 Developed by **Visshnupriya 🚀**
 GitHub: [Visshnupriya0516](https://github.com/Visshnupriya0516)
 
-
-
-Do you also want me to **include sample screenshots (placeholders)** in the README so it looks even more professional on GitHub?
