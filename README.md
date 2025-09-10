@@ -1,10 +1,6 @@
-Got it 🚀 You want a **professional, structured README** for your **Market Risk Dashboard** project in the same detailed style as the one you showed me.
 
-Here’s a ready-to-use `README.md` for your **JavaFX Market Risk Dashboard**:
 
----
 
-```markdown
 # 📊 Market Risk Dashboard  
 
 An end-to-end **JavaFX dashboard** for visualizing and analyzing market risk.  
